@@ -1,0 +1,22 @@
+<?php if ( count( $this->items ) > 0 ): ?>
+	<?php foreach ( $this->items as $item ): ?>
+	<div>
+		<?php printf( '%s [%d]', $item['title'], $item['id'] ); ?>
+		<div><?php printf( 'масса: %d', $item['weight'] ); ?></div>
+		<div><?php printf( 'цена: %.2f кр.', $item['price'] ); ?></div>
+		<div><?php printf( 'долговечность: 0/%d', $item['durability'] ); ?></div>
+		<ul>
+			<?php foreach ( $item['requirements'] as $requirement ): ?>
+				<li><?php printf( '%s: %s', $requirement['title'], $requirement['value'] ); ?></li>
+			<?php endforeach; ?>
+		</ul>
+		<ul>
+			<?php foreach ( $item['modifiers'] as $modifier ): ?>
+				<li><?php printf( '%s: %s', $modifier['title'], $modifier['value'] ); ?></li>
+			<?php endforeach; ?>
+		</ul>
+	</div>
+	<?php endforeach; ?>
+<?php else: ?>
+	В данном разделе товаров нет!
+<?php endif; ?>

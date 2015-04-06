@@ -1,0 +1,23 @@
+<form method="get" action="">
+	<div class="field">
+		<label for="analizeNick">Ник:</label>
+		<input type="text" name="nick" id="analizeNick" value="<?php print( $this->nick ); ?>" />
+	</div>
+	<input type="submit" value="Анализировать" />
+</form>
+
+<?php if( count( $this->chars ) > 0 ):?>
+	<?php foreach( $this->chars as $char ):?>
+<h2><?php print( $char['login'] ); ?></h2>
+<dl>
+	<dt>Класс:</dt>
+	<dd><?php print( $char['class'] ); ?></dd>
+	<dt>Оружие:</dt>
+	<dd><?php print( $char['weapon'] ); ?></dd>
+	<dt>Профильный урон:</dt>
+	<dd><?php print( $char['profileAtack'] ); ?></dd>
+</dl>
+	<?php endforeach; ?>
+<?php else: ?>
+<h3>Чар <?php print( $this->nick ); ?> находится не в бою.</h3>
+<?php endif; ?>

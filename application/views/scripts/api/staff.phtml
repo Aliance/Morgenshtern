@@ -1,0 +1,18 @@
+<?php print( '<?xml version="1.0" encoding="UTF-8"?>' ); ?>
+
+<clan>
+	<title><?php print( $this->clan ); ?></title>
+	<staff>
+		<?php
+		foreach ( $this->staff as $char ) {
+			?>
+		<char>
+			<id><?php print( $char['id'] ); ?></id>
+			<nick><?php print( $char['nick'] ); ?></nick>
+			<level><?php print( $char['level'] ); ?></level>
+		</char>
+			<?php
+		}
+		?>
+	</staff>
+</clan>

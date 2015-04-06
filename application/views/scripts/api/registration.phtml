@@ -1,0 +1,50 @@
+<div id="content-title">Регистрация API для клана</div>
+
+<div class="info">
+	Внимательно проверьте Ваши данные. Если они не соответствуют действительности — покиньте данную страницу 
+	и свяжитесь с <span class="nowrap"><?php print( $this->char->format( 'Aliance spb' ) ); ?></span>. Если данные указаны верно, после нажатия на кнопку «Все правильно» 
+	Вы автоматически зарегистрируетесь в системе API и Вам будет выдан уникальный ключ доступа.
+</div>
+
+<table class="table">
+    <colgroup width="200"></colgroup>
+    <colgroup></colgroup>
+    <thead>
+        <tr>
+            <td colspan="2">
+                Проверьте Ваши регистрационные данные
+            </td>
+        </tr>
+        <tr>
+            <th>Параметр</th>
+            <th>Значение</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <td colspan="2">
+				<a class="button" href="/api/join">
+					<span>Все правильно</span>
+				</a>
+            </td>
+        </tr>
+    </tfoot>
+    <tbody>
+        <tr>
+      	    <td>
+				Логин в БК
+            </td>
+      	    <td>
+				<?php print( $this->values['nick'] ); ?>
+            </td>
+        </tr>
+        <tr>
+      	    <td>
+				Ваш клан
+            </td>
+      	    <td>
+				<?php print( $this->values['clan'] ); ?>
+            </td>
+        </tr>
+    </tbody>
+</table>

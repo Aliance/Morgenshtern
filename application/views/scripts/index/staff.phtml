@@ -1,0 +1,69 @@
+<table class="table">
+    <colgroup width="210"></colgroup>
+    <colgroup></colgroup>
+    <colgroup width="135"></colgroup>
+    <thead>
+        <tr>
+            <td colspan="3">
+                Состав клана
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Online
+            </th>
+            <th>
+                Ник | Уровень
+            </th>
+            <th>
+                Город
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <td colspan="3">
+                Всего в составе: <?php print( count( $this->staff ) ); ?> чел.
+            </td>
+        </tr>
+    </tfoot>
+    <tbody>
+	<?php foreach ( $this->staff as $char ): ?>
+        <tr>
+            <td>
+
+                <?php
+				if ( empty( $char['online'] ) ) {
+					print ( "<div class='offline'>Персонажа нет в клубе" );
+				} else if ( ! empty( $char['room'] ) ) {
+					printf( "<div class='online'>%s", $char['room'] );
+				} else {
+					print ( "<div class='offline'>Персонаж сейчас находится в клубе" );
+				}
+				if ( ! empty( $char['battle'] ) ) {
+					print( $char['battle'] );
+				}
+				?>
+				</div>
+			</td>
+            <td>
+                <?php if ( empty( $char['rank'] ) ): ?>
+                <?php printf( '%s', $char['nick'] ); ?>
+				<?php else: ?>
+				<?php printf( '%s — %s', $char['nick'], $char['rank'] ); ?>
+				<?php endif; ?>
+				<?php if ( isset( $char['chilvary'] ) ): ?>
+					<div class="reputation">
+						<?php
+						foreach ( $char['chilvary'] as $chilvary ):
+							printf( '<img src="http://img.combats.com/i/%s" width="35" height="24" alt="%s %s" title="%3$s — %2$s" />', $chilvary['img'], $chilvary['dsc'], $chilvary['title'] );
+						endforeach; ?>
+					</div>
+				<?php endif; ?>
+            </td>
+            <td class="city">
+                <?php print( $char['city'] ); ?>
+            </td>
+        </tr>
+	<?php endforeach; ?>
+    </tbody>
+</table>

@@ -1,0 +1,54 @@
+SetEnv APPLICATION_ENV production
+SetEnv TZ Europe/Moscow
+
+Options -Indexes
+AddDefaultCharset utf-8
+
+FileETag MTime Size
+
+AddType 'text/css; charset=utf-8' .css
+AddType 'text/javascript; charset=utf-8' .js
+AddType 'image/x-icon; charset=utf-8' .ico
+AddType 'text/html; charset=utf-8' .html .shtml
+AddType 'text/xml; charset=utf-8' .xml
+AddType 'text/x-component; charset=utf-8' .htc  
+
+<IfModule mod_deflate.c>
+	AddOutputFilterByType DEFLATE text/html text/xml image/x-icon text/css text/javascript
+
+	BrowserMatch ^Mozilla/4 gzip-only-text/html
+	BrowserMatch ^Mozilla/4\.0[678] no-gzip
+	BrowserMatch Konqueror no-gzip
+	BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+</IfModule>
+
+<IfModule mod_headers.c>
+	Header append Vary User-Agent
+
+	<FilesMatch .*\.(css|js|php|phtml|shtml|html|xml)$>
+		Header append Cache-Control private
+	</FilesMatch>
+</IfModule>
+
+<IfModule mod_expires.c>
+	ExpiresActive On
+	ExpiresDefault "access plus 1 month"
+
+	<FilesMatch .*\.(shtml|html|phtml|php)$>
+		ExpiresActive Off
+	</FilesMatch>
+</IfModule>
+
+<IfModule mod_dir.c>
+	DirectoryIndex index.php
+</IfModule>
+
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+	RewriteBase /
+	RewriteCond %{REQUEST_FILENAME} -s [OR]
+	RewriteCond %{REQUEST_FILENAME} -l [OR]
+	RewriteCond %{REQUEST_FILENAME} -d
+	RewriteRule ^.*$ - [NC,L]
+	RewriteRule ^.*$ index.php [NC,L]
+</IfModule>

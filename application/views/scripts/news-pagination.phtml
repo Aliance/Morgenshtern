@@ -1,0 +1,23 @@
+<?php if ($this->pageCount>1): ?>
+<div class="paginator centering">
+    <?php if (isset($this->previous)): ?>
+        <a href="<?php print $this->url(array('page' => $this->previous), 'news'); ?>" class="button previous" title="Ctrl + ←">&larr;</a>
+    <?php else: ?>
+        <span class="button">&larr;</span>
+    <?php endif; ?>
+
+    <?php foreach ($this->pagesInRange as $page): ?>
+        <?php if ($page != $this->current): ?>
+        <?php printf( '<a href="%s" class="button">%d</a>', $this->url(array('page' => $page), 'news'), $page ); ?>
+        <?php else: ?>
+        <span class="button"><?php print $page; ?></span>
+        <?php endif; ?>
+    <?php endforeach; ?>
+
+    <?php if (isset($this->next)): ?>
+        <a href="<?php print $this->url(array('page' => $this->next), 'news'); ?>" class="button next" title="Ctrl + →">&rarr;</a>
+    <?php else: ?>
+        <span class="button">&rarr;</span>
+    <?php endif; ?>
+</div>
+<?php endif; ?>

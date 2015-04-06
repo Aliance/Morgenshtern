@@ -1,0 +1,34 @@
+<form action="/bot" method="post" class="justify">
+	<div class="field">
+		<label for="botChar">Бот:</label>
+		<select name="botChar" id="botChar">
+			<option value="capital">CapitalCity</option>
+			<option value="angels">AngelsCity</option>
+			<option value="sun" selected="selected">SunCity</option>
+			<option value="sand">SandCity</option>
+			<option value="moon">MoonCity</option>
+			<option value="dreams">DreamsCity</option>
+			<option value="old">OldCity</option>
+		</select>
+	</div>
+	<div class="field">
+		<label for="botMessage">Сообщение:</label>
+		<input type="text" name="botMessage" id="botMessage" value="" />
+	</div>
+	<div class="field">
+		<label for="botChars">Кому:</label>
+		<input type="text" name="botChars" id="botChars" value="" />
+	</div>
+	<div class="field">
+		<input type="button" id="send" value="Отправить" />
+	</div>
+	<div class="field">
+		<input type="button" id="update" value="Обновить инфо" />
+	</div>
+	<div class="field">
+		<input type="button" id="ping" value="Ping" />
+	</div>
+</form>
+
+
+<p id="responce" style="float: right;"></p>

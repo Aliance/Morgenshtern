@@ -1,0 +1,35 @@
+<?php if ( count($this->topics->rows) ): ?>
+	<?php foreach ( $this->topics->rows as $row ): ?>
+<!-- начало новости -->
+<div class="news-header">
+	<div class="news-header-right"><?php print $row['start_date']; ?></div>
+	<div class="news-header-left"><?php print $row['news_title']; ?></div>
+</div>
+<div class="news-middle">
+	<div class="news-middle-more"></div>
+	<div class="news-middle-content"><?php print $row['post']; ?></div>
+</div>
+<div class="news-footer">
+	<div class="news-footer-right"><?php print $row['starter_name']; ?></div>
+	<div class="news-footer-left">
+		<?php printf( '<a href="%s" class="external">%d %s</a>', $row['link-topic'], $row['posts'], $this->plural( $row['posts'], 'комментарий', 'комментария', 'комментариев' ) ); ?>
+	</div>
+</div>
+<!-- конец новости -->
+	<?php endforeach; ?>
+<?php echo $this->paginationControl($this->topics->paginator, 'Sliding', 'news-pagination.phtml'); ?>
+	
+<div class="centering">
+	<a href="<?php print $this->url(array('cat' => 'all'), 'news'); ?>">Все новости</a> || 
+	<a href="<?php print $this->url(array('cat' => 'innovation'), 'news'); ?>">Нововведения</a> || 
+	<a href="<?php print $this->url(array('cat' => 'analytics'), 'news'); ?>">Аналитические рассуждения</a> || 
+	<a href="<?php print $this->url(array('cat' => 'review'), 'news'); ?>">Обзоры форумов</a> || 
+	<a href="<?php print $this->url(array('cat' => 'cnf'), 'news'); ?>">Сайт и форум</a> || 
+	<a href="<?php print $this->url(array('cat' => 'holidays'), 'news'); ?>">Праздники</a> || 
+	<a href="<?php print $this->url(array('cat' => 'miscellaneous'), 'news'); ?>">Разное</a>
+	<br />
+	<a href="http://forum.morgenshtern.com/index.php?showforum=23" class="external">Архив новостей</a>
+</div>
+<?php else: ?>
+	На данный момент новостей нет.
+<?php endif; ?>

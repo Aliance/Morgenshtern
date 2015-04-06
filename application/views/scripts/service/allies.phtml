@@ -1,0 +1,98 @@
+<table class="table">
+    <colgroup width="210"></colgroup>
+    <colgroup></colgroup>
+    <colgroup width="135"></colgroup>
+    <thead>
+        <tr>
+            <td colspan="3">
+                Монитор союзников
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Локация
+            </th>
+            <th>
+                Ник
+            </th>
+            <th>
+                Город
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <td colspan="3">
+                Всего: <?php print( count( $this->staff ) ); ?> чел.
+            </td>
+        </tr>
+    </tfoot>
+    <tbody>
+	<?php foreach ( $this->staff as $char ): ?>
+        <tr>
+            <td>
+
+                <?php
+				if ( empty( $char['room'] ) ) {
+					print ( "<div class='offline'>Персонаж сейчас находится в клубе" );
+				} else {
+					printf( "<div class='online'>%s", $char['room'] );
+				}
+				if ( ! empty( $char['battle'] ) ) {
+					print( $char['battle'] );
+				}
+				?>
+				</div>
+			</td>
+            <td>
+                <?php printf( '%s', $char['nick'] ); ?>
+				<div class="private">
+					<img src="http://img.combats.com/i/lock.gif" alt="Приватное сообщение" title="Написать в приват" width="20" height="15" onclick="addToPrivate( '<?php print( $char[ 'raw_nick' ] ); ?>' )" />
+				</div>
+            </td>
+            <td class="city">
+                <?php print( $char['city'] ); ?>
+            </td>
+        </tr>
+	<?php endforeach; ?>
+    </tbody>
+</table>
+
+<fieldset>
+	<legend>Написать приватное сообщение:</legend>
+	
+	<div class="hidden" id="userName"><?php print( $this->login ); ?></div>
+	<div class="justify">
+		<div class="field">
+			<div class="title">Кому пишем:</div>
+			<div class="value">
+				<div id="private-messages">&nbsp;</div>
+			</div>
+		</div>
+		<div class="field">
+			<div class="title">В какой город:</div>
+			<div class="value">
+				<select name="botChar" id="botChar">
+					<!--<option value="capital">CapitalCity</option>-->
+					<!--<option value="angels">AngelsCity</option>-->
+					<option value="capital">AngelsCity</option>
+					<option value="sun" selected="selected">SunCity</option>
+					<option value="sand">SandCity</option>
+					<option value="moon">MoonCity</option>
+					<option value="dreams">DreamsCity</option>
+					<option value="old">OldCity</option>
+				</select>
+			</div>
+		</div>
+		<div class="field">
+			<div class="title">Сообщение:</div>
+			<div class="value">
+				<input type="text" id="message" />
+			</div>
+		</div>
+		<div class="centering">
+			<button id="reset-message">Очистить</button>
+			<button id="send-message">Отправить</button>
+		</div>
+	</div>
+	<div class="clear"></div>
+</fieldset>

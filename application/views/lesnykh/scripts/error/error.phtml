@@ -1,0 +1,17 @@
+<h1>Произошла ошибка:</h1>
+<h2><?php print( $this->message ); ?></h2>
+
+<?php if ( isset( $this->exception ) ): ?>
+
+<h3>Информация об ошибке:</h3>
+<p>
+	<b>Сообщение:</b> <?php print( $this->exception->getMessage() ); ?>
+</p>
+
+<h3>Трассировка:</h3>
+<pre><?php print( $this->exception->getTraceAsString() ); ?></pre>
+
+<h3>Параметры запроса:</h3>
+<pre><?php print( var_export( $this->request->getParams(), true ) ); ?></pre>
+
+<?php endif; ?>

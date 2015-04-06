@@ -1,0 +1,41 @@
+<div class="page-header">
+	<h1>Расходы</h1>
+</div>
+<div class="table-responsive">
+	<table class="table table-striped table-bordered table-hover">
+		<caption>список расходов</caption>
+		<thead>
+			<tr>
+				<th>позиция</th>
+				<th>было запланированно</th>
+				<th>фактическая стоимость &darr;</th>
+				<th>уже заплатили</th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php foreach ($this->expenses as $expense): ?>
+			<?php $this->total[0][0] += is_array($expense[1]) ? $expense[1][0] : $expense[1]; ?>
+			<?php $this->total[0][1] += is_array($expense[1]) ? $expense[1][1] : $expense[1]; ?>
+			<?php $this->total[1] += is_array($expense[2]) ? $expense[2][0] : $expense[2]; ?>
+			<?php $this->total[2] += is_array($expense[3]) ? $expense[3][0] : $expense[3]; ?>
+			<tr>
+				<td><?=$expense[0]?></td>
+				<td><?=(is_array($expense[1]) ? (number_format($expense[1][0], 0, '', '.').' &ndash; '.number_format($expense[1][1], 0, '', '.')) : ($expense[1] ? number_format($expense[1], 0, '', '.') : '&mdash;'))?></td>
+				<td><?=(is_array($expense[2]) ? ('<abbr title="'.$expense[2][1].'" class="initialism">'.number_format($expense[2][0], 0, '', '.').'</abbr>') : ($expense[2] ? number_format($expense[2], 0, '', '.') : '&mdash;'))?></td>
+				<td><?=(is_array($expense[3]) ? ('<abbr title="'.$expense[3][1].'" class="initialism">'.number_format($expense[3][0], 0, '', '.').'</abbr>') : ($expense[3] ? number_format($expense[3], 0, '', '.') : '&mdash;'))?></td>
+			</tr>
+			<?php endforeach; ?>
+		</tbody>
+		<tfoot>
+		<tr>
+			<th>Итого</th>
+			<th><?=number_format($this->total[0][0], 0, '', '.').' &ndash; '.number_format($this->total[0][1], 0, '', '.')?></th>
+			<th><?=number_format($this->total[1], 0, '', '.')?></th>
+			<th><?=number_format($this->total[2], 0, '', '.')?></th>
+		</tr>
+		<tr>
+			<th colspan="4" class="text-right">Осталось доплатить: <?=number_format($this->total[1]-$this->total[2], 0, '', '.')?></th>
+		</tr>
+		</tfoot>
+	</table>
+</div>

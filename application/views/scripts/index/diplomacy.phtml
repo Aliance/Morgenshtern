@@ -1,0 +1,10 @@
+<p>Союзные кланы:</p>
+
+<?php foreach ( $this->row as $row ): ?>
+<a href="http://capitalcity.combats.com/encicl/klan/<?php print( $row['clan'] ); ?>.html" class="external"><img src="http://img.combats.com/i/klan/<?php print( $row['clan'] ); ?>.gif" alt="" title="<?php print( $row['title'] ); ?>"></a> <a href="http://capitalcity.combats.com/encicl/klan/<?php print( $row['clan'] ); ?>.html" class="external"><b><?php print( $row['title'] ); ?></b></a> &#151; <a href="http://<?php print( $row['web'] ); ?>/" class="external"><?php print( $row['web'] ); ?></a> &#151; <a href="http://forum.morgenshtern.com/index.php?showtopic=<?php print( $row['union'] ); ?>" class="external">союзный договор</a>
+<br />
+<?php endforeach; ?>
+
+<p>
+	<a href="/diplomacy/union">Проект союзного договора</a>
+</p>

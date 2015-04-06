@@ -1,0 +1,57 @@
+<div id="content-title">Управление API</div>
+
+<?php if ( ! $this->values['approved'] ): ?>
+<div class="warn">
+	Администратор сайта еще не подтвердил Вашу заявку. Вы пока не можете пользоваться API.
+</div>
+<?php endif; ?>
+
+<table class="table">
+    <colgroup width="200"></colgroup>
+    <colgroup></colgroup>
+    <thead>
+        <tr>
+            <td colspan="2">
+                Ваши регистрационные данные
+            </td>
+        </tr>
+        <tr>
+            <th>Параметр</th>
+            <th>Значение</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <td>URL</td>
+            <td>
+				<?php printf( 'http://www.morgenshtern.com/api/staff/clan/%s/key/%s/format/xml', $this->values['clan'], $this->values['key'] ); ?>
+			</td>
+        </tr>
+    </tfoot>
+    <tbody>
+        <tr>
+      	    <td>
+				Логин в БК
+            </td>
+      	    <td>
+				<?php print( $this->values['nick'] ); ?>
+            </td>
+        </tr>
+        <tr>
+      	    <td>
+				Ваш клан
+            </td>
+      	    <td>
+				<?php print( $this->values['clan'] ); ?>
+            </td>
+        </tr>
+        <tr>
+      	    <td>
+				Секретный ключ
+            </td>
+      	    <td>
+				<?php print( $this->values['key'] ); ?>
+            </td>
+        </tr>
+    </tbody>
+</table>
